@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Universo do Ryan 🪐</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            background: #070719;
+            overflow-x: hidden;
+        }
+
+        .galaxia {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                radial-gradient(ellipse at 20% 20%, #42216d 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 60%, #182c65 0%, transparent 40%),
+                linear-gradient(135deg, #050511, #11102e, #080719);
+        }
+
+        #estrelas {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .estrela {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: brilhar 2s infinite alternate;
+        }
+
+        @keyframes brilhar {
+            from { opacity: 0.2; }
+            to { opacity: 1; }
+        }
+
+        header {
+            width: 100%;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 25, 0.45);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #ffffff15;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            color: #d6a8ff;
+        }
+
+        nav a {
+            color: #ddd8ff;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #e5a8ff;
+        }
+
+        .inicio {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 60px 8%;
+            gap: 40px;
+        }
+
+        .texto {
+            max-width: 650px;
+        }
+
+        .texto small {
+            color: #c4a1ff;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(35px, 5vw, 65px);
+            line-height: 1.2;
+            margin: 20px 0;
+        }
+
+        h1 span {
+            background: linear-gradient(90deg, #bda0ff, #f2a9ec);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .texto p {
+            color: #c6c3e0;
+            line-height: 1.9;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .botao {
+            display: inline-block;
+            padding: 13px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(90deg, #7049c7, #b25dc6);
+            box-shadow: 0 0 25px #8b51df55;
+            transition: 0.3s;
+        }
+
+        .botao:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 35px #b25dc688;
+        }
+
+        .sistema {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: flutuar 5s ease-in-out infinite;
+        }
+
+        .planeta {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(
+                160deg,
+                #ffe0b0,
+                #d79bb6 30%,
+                #8b72b8 55%,
+                #e9c5a0 75%,
+                #b27d9b
+            );
+            box-shadow: inset -20px -10px 30px #17102e99,
+                        0 0 45px #c49be344;
+        }
+
+        .planeta::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent 0 18px,
+                #5e426a33 19px 24px
+            );
+        }
+
+        .anel {
+            position: absolute;
+            width: 280px;
+            height: 85px;
+            border: 17px solid #d8b9e2;
+            border-left-color: #f0d4c2;
+            border-right-color: #9479b9;
+            border-radius: 50%;
+            transform: rotate(-20deg);
+            z-index: 3;
+        }
+
+        @keyframes flutuar {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        section.conteudo {
+            padding: 90px 8%;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .titulo small {
+            color: #d3a1ff;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .titulo h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(25px, 4vw, 38px);
+            margin: 15px 0;
+        }
+
+        .titulo p {
+            max-width: 650px;
+            margin: auto;
+            color: #c6c3e0;
+            line-height: 1.8;
+        }
+
+        .cartoes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .cartao {
+            padding: 30px;
+            background: #ffffff09;
+            border: 1px solid #c4a1ff30;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            transition: 0.3s;
+        }
+
+        .cartao:hover {
+            transform: translateY(-8px);
+            border-color: #d4a5ff;
+            background: #ffffff12;
+        }
+
+        .icone {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .cartao h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #e0c7ff;
+        }
+
+        .cartao p {
+            color: #c6c3e0;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .mensagem {
+            max-width: 850px;
+            margin: 20px auto 90px;
+            padding: 50px 25px;
+            text-align: center;
+            background: linear-gradient(120deg, #7049c722, #b25dc622);
+            border: 1px solid #ffffff20;
+            border-radius: 25px;
+        }
+
+        .mensagem h2 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .mensagem p {
+            color: #d3cce9;
+            line-height: 1.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 15px;
+            border-top: 1px solid #ffffff15;
+            color: #aaa6ca;
+            font-size: 13px;
+        }
+
+        footer span {
+            color: #e5a8ff;
+        }
+
+        @media (max-width: 800px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0;
+            }
+
+            .inicio {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 70px;
+            }
+
+            .sistema {
+                transform: scale(0.85);
+            }
+
+            .cartoes {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="galaxia"></div>
+    <div id="estrelas"></div>
+
+    <header>
+        <div class="logo">RYAN ✦</div>
+
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre mim</a>
+            <a href="#sonhos">Meus sonhos</a>
+            <a href="#interesses">Interesses</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="inicio" id="inicio">
+
+            <div class="texto">
+                <small>✦ Meu pequeno universo ✦</small>
+
+                <h1>
+                    Seja bem-vindo<br>
+                    ao <span>site do Ryan!</span>
+                </h1>
+
+                <p>
+                    Aqui vou colocar coisas pessoais minhas e espero
+                    que você goste. Este é o meu cantinho na internet,
+                    onde vou compartilhar um pouco da minha história,
+                    dos meus sonhos e das coisas que fazem parte de mim.
+                    Prepare-se para explorar o meu universo! 🪐
+                </p>
+
+                <a href="#sobre" class="botao">
+                    ✨ Explorar meu universo
+                </a>
+            </div>
+
+            <div class="sistema">
+                <div class="anel"></div>
+                <div class="planeta"></div>
+            </div>
+
+        </section>
+
+        <section class="conteudo" id="sobre">
+            <div class="titulo">
+                <small>Conheça meu universo</small>
+                <h2>Um pouco sobre mim</h2>
+                <p>
+                    Cada pessoa carrega um universo próprio.
+                    Este espaço é onde posso compartilhar o meu.
+                </p>
+            </div>
+
+            <div class="cartoes">
+
+                <article class="cartao">
+                    <div class="icone">🌙</div>
+                    <h3>Quem sou eu</h3>
+                    <p>
+                        Sou um jovem cheio de sonhos e metas de vida,
+                         e espero conquistar tudo por meio dos estudos. 
+                         Também gosto de esportes; um deles é o vôlei, 
+                         que treino semanalmente e considero uma forma
+                         de lazer.
+                    </p>
+                </article>
+
+                <article class="cartao" id="sonhos">
+                    <div class="icone">🚀</div>
+                    <h3>Meus sonhos</h3>
+                    <p>
+                    Tornar-me bacharel em Engenharia de Software ou em Ciência da Computação.
+
+                    Conseguir dar à minha família tudo aquilo de que ela precisar e que eu puder oferecer no futuro.
+
+                    Ter uma casa onde eu possa morar feliz e me sentir seguro.
+                    </p>
+                </article>
+
+                <article class="cartao" id="interesses">
+                    <div class="icone">🪐</div>
+                    <h3>Meus interesses</h3>
+                    <p>
+                        Gosto muito de tecnologia e quero me tornar um profissional nessa área. 
+                        Um dos meus gêneros musicais favoritos é o pop.
+                        A tecnologia também é o que mais desperta minha curiosidade e meu interesse.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="mensagem">
+            <h2>✨ Obrigado por estar aqui!</h2>
+            <p>
+        
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        Feito com <span>♥</span> por Ryan |
+        Que sua vida seja sempre iluminada por estrelas ✦
+    </footer>
+
+    <script>
+        const fundo = document.getElementById("estrelas");
+
+        for (let i = 0; i < 150; i++) {
+            const estrela = document.createElement("div");
+
+            estrela.classList.add("estrela");
+
+            const tamanho = Math.random() * 3 + 1;
+
+            estrela.style.width = tamanho + "px";
+            estrela.style.height = tamanho + "px";
+
+            estrela.style.left = Math.random() * 100 + "%";
+            estrela.style.top = Math.random() * 100 + "%";
+
+            estrela.style.animationDelay = Math.random() * 3 + "s";
+            estrela.style.animationDuration = Math.random() * 3 + 1 + "s";
+
+            fundo.appendChild(estrela);
+        }
+    </script>
+
+</body>
+</html>
